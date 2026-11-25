@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-11-25",
+  "environment": { "node": "24.22.3", "npm": "11.19.1", "python": "3.12.14", "next": "16.4.6", "typescriptSdk": "0.1.6", "pythonSdk": "0.1.6", "pythonSdkSpec": "1.0.0", "mcpSdk": "1.32.2" },
+  "checks": [
+    { "id": "next-build", "kind": "local", "status": "passed", "evidence": "npm run build: compiled, type checked, generated 5 pages" },
+    { "id": "local-unit-tests", "kind": "local", "status": "passed", "evidence": "npm test: 3 tests passed, covering input validation, live-send guard and timestamped webhook verification" },
+    { "id": "app-home", "kind": "local", "status": "passed", "evidence": "GET / returned HTTP 200" },
+    { "id": "local-preview", "kind": "local", "status": "passed", "evidence": "POST /api/lab preview returned local_preview with synthetic content; no provider request" },
+    { "id": "send-guard", "kind": "local", "status": "passed", "evidence": "POST /api/lab send refused with HTTP 403 while live sending disabled" },
+    { "id": "ts-sdk-mock", "kind": "mock", "status": "passed", "evidence": "sadasend@0.1.6 sent one POST /emails request with dryRun=true and idempotency-key; fixture returned queued" },
+    { "id": "python-sdk-mock", "kind": "mock", "status": "passed", "evidence": "sadasend 0.1.6 sent one POST /emails request with dry_run=true and idempotency-key; fixture returned queued" },
+    { "id": "mcp-client-fixture", "kind": "mock", "status": "passed", "evidence": "Official MCP SDK 1.32.2 initialized and discovered one local fixture tool, then called it" },
+    { "id": "webhook-fixture", "kind": "mock", "status": "passed", "evidence": "Signed fixture HTTP 200; duplicate HTTP 200 duplicate=true; invalid signature HTTP 401" },
+    { "id": "official-docs", "kind": "network", "status": "passed", "evidence": "Initially blocked by egress; after environment update, current SadaSend docs and MCP guide loaded on 2026-11-25" },
+    { "id": "sadasend-rest-probe", "kind": "live", "status": "blocked", "evidence": "API domain is reachable but no SADASEND_API_KEY is bound; the MCP agent key was rejected by REST with invalid_api_key" },
+    { "id": "sadasend-live-api", "kind": "live", "status": "blocked", "evidence": "Separate REST/SDK key absent; one recipient and at most two real sends were approved, and one MCP send was used" },
+    { "id": "requested-live-send", "kind": "live", "status": "passed", "evidence": "One MCP send request was held for approval; user approved and reported the test subject in Inbox. Account one-day aggregate reported 1 sent and 1 delivered. Returned message ID was not readable through MCP. See results/live-mcp-2026-11-25.json." },
+    { "id": "sadasend-hosted-mcp", "kind": "live", "status": "passed", "evidence": "Streamable HTTP initialization passed with environment-bound agent key; 11 visible tools, preview accepted without send, one held send request later approved and reported in Inbox. See results/live-mcp-2026-11-25.json." },
+    { "id": "resend-live", "kind": "live", "status": "not_tested", "evidence": "No competitor account or approved recipient; comparison uses official SDK materials only" },
+    { "id": "loops-live", "kind": "live", "status": "not_tested", "evidence": "No competitor account or approved recipient; comparison uses official SDK materials only" },
+    { "id": "llm-agent-run", "kind": "live", "status": "blocked", "evidence": "No authorized paid model run; an environment-bound SadaSend agent key was used for deterministic hosted MCP calls, not an LLM agent run" }
+  ]
+}

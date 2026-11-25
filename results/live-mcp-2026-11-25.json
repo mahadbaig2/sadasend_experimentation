@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-11-25",
+  "transport": "streamable HTTP",
+  "endpoint": "https://mcp.sadasend.com",
+  "client": "@modelcontextprotocol/sdk 1.32.2",
+  "serverVersion": "1.0.0",
+  "visibleToolCount": 11,
+  "visibleTools": ["build_utm_url", "check_suppression", "get_email_status", "get_stats", "list_domains", "list_templates", "preview_email", "render_template", "search_emails", "send_email", "verify_email"],
+  "scopeNote": "The current docs list 12 tools. check_domain_setup was not visible with this key; the docs say tools are filtered by scope.",
+  "recipient": "[one user-approved address, redacted]",
+  "maxAuthorizedRealSends": 2,
+  "realSendAttempts": 1,
+  "checks": [
+    { "name": "list_domains", "result": "No sending domains on this account yet; sandbox sender evaluated separately" },
+    { "name": "preview_email", "result": "This would be accepted. Nothing was sent." },
+    { "name": "send_email", "result": "Held for approval, not sent. Message ed18dda0-ead0-45bb-bd2c-a85703da4a59." },
+    { "name": "get_email_status before approval", "result": "isError=true; no message by returned ID" },
+    { "name": "search_emails before approval", "result": "No messages matched subject or pending_approval status" },
+    { "name": "get_email_status after user-reported approval", "result": "isError=true; no message by returned ID" },
+    { "name": "search_emails after user-reported approval", "result": "No messages matched subject or unfiltered recent list" },
+    { "name": "get_stats after user-reported approval", "result": "Account aggregate over 1 day: 1 sent, 1 delivered, 0 bounced, 0 complained. Aggregate cannot establish message identity." },
+    { "name": "mailbox confirmation", "result": "User reported receiving the test subject in Inbox. This is user-reported placement, not a provider event." }
+  ],
+  "deliveryConclusion": "One approved MCP send reached the user's Inbox by user report. Account aggregate stats support a send and delivery, but per-message status and event trail remain unavailable through the returned ID. The second approved send was not used."
+}
